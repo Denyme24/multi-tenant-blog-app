@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
               </h1>
             </div>
             <div className="flex items-center justify-center gap-4">
-              <OrganizationSwitcher />
+              <OrganizationSwitcher afterSelectOrganizationUrl={"/org/:slug"} />
               <UserButton />
             </div>
           </div>
