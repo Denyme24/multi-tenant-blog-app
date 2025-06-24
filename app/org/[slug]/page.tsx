@@ -3,9 +3,22 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import * as React from "react";
+import { createBlog } from "@/app/org/[slug]/action";
+import { useOrganization } from "@clerk/nextjs";
 export default function OrganizationLandingpage() {
   const [blogContent, setblogContent] = React.useState("");
   const [blogTitle, setBlogTitle] = React.useState("");
+  const selectedOrg = useOrganization();
+
+  const handleCreateBlog = () => {
+    createBlog({
+      body: blogContent,
+      orgId: selectedOrg.organization?.id ?? "",
+      title: blogTitle,
+    });
+    setblogContent("");
+    setBlogTitle("");
+  };
   return (
     <>
       <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -154,6 +167,7 @@ export default function OrganizationLandingpage() {
                   <Button
                     variant="outline"
                     className="px-8 py-3 text-base font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 hover:from-blue-400 hover:to-purple-400 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 shadow-lg rounded-xl group"
+                    onClick={handleCreateBlog}
                   >
                     <svg
                       className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"

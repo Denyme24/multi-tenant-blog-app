@@ -7,3 +7,6 @@ title:varchar({length:80}).notNull(),
 body:text().notNull(),
 orgId:text().notNull()
 })
+
+export type CreateBlogType = typeof BlogTable.$inferInsert;
+export type SelectBlogType = typeof BlogTable.$inferSelect;
