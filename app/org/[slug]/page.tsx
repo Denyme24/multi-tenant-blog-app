@@ -1,8 +1,11 @@
+"use client";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-
+import * as React from "react";
 export default function OrganizationLandingpage() {
+  const [blogContent, setblogContent] = React.useState("");
+  const [blogTitle, setBlogTitle] = React.useState("");
   return (
     <>
       <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -34,14 +37,31 @@ export default function OrganizationLandingpage() {
                 <p className="text-gray-600">
                   Let your creativity flow and share your ideas with the world
                 </p>
-              </div>
-
+              </div>{" "}
               <div className="space-y-6">
-                {" "}
+                {/* Title Field */}
                 <div className="relative">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Blog Title
+                  </label>
+                  <Textarea
+                    className="min-h-[80px] p-4 text-lg font-semibold border-2 border-gray-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 rounded-xl resize-none transition-all duration-200 bg-white/80 backdrop-blur-sm"
+                    placeholder="Enter your blog title here..."
+                    value={blogTitle}
+                    onChange={(e) => setBlogTitle(e.target.value)}
+                  />
+                </div>
+
+                {/* Content Field */}
+                <div className="relative">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Blog Content
+                  </label>
                   <Textarea
                     className="min-h-[200px] p-6 text-base border-2 border-gray-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 rounded-xl resize-none transition-all duration-200 bg-white/80 backdrop-blur-sm"
                     placeholder="What's on your mind? Start writing your blog post here...&#10;&#10;💡 Tips:&#10;• Use headings to structure your content&#10;• Add bullet points for easy reading&#10;• Keep paragraphs short and engaging&#10;• Include examples to illustrate your points"
+                    value={blogContent}
+                    onChange={(e) => setblogContent(e.target.value)}
                   />
                   <div className="absolute bottom-4 right-4 flex items-center gap-3 text-sm text-gray-400">
                     <span className="flex items-center gap-1">
